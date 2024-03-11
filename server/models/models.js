@@ -1,7 +1,6 @@
 const sequelize = require("../db");
 const {DataTypes} = require("sequelize");
 
-
 const User = sequelize.define( "user", {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email: {type: DataTypes.STRING, unique: true},
@@ -68,6 +67,9 @@ Device.belongsTo(Brand);
 
 Device.hasMany(Rating);
 Rating.belongsTo(Device);
+
+Device.hasMany(BasketDevice)
+BasketDevice.belongsTo(Device)
 
 Device.hasMany(DeviceInfo, {as: "info"});
 DeviceInfo.belongsTo(Device);
