@@ -11,7 +11,7 @@ export default class DeviceStore {
             {id: 2, name: "Apple"}
         ];
         this._devices = [
-            {id: 1, name: "Iphone 12 pro", price: 25000, rating: 5, img: ""}
+            {id: 1, name: "Iphone 12 pro", price: 25000, rating: 5, img: "C:/Users/iliaf/Desktop/Новая папка/программирование/projects/git_project/learn_project_shop/learn_project_shop/server/static/83dbc51f-25eb-4e13-a4a3-9ad480244dc5.jpg"}
         ];
         makeAutoObservable(this);
     }
