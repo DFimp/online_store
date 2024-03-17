@@ -6,7 +6,6 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { Context } from '../../index';
 import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
-import { remove } from 'mobx';
 
 const CreateDevice = ({ show, onHide }) => {
     const { device } = useContext(Context);
