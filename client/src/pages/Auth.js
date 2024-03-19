@@ -4,28 +4,34 @@ import Form from 'react-bootstrap/esm/Form';
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Button from 'react-bootstrap/Button';
-import { NavLink, useLocation } from 'react-router-dom';
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../utils/consts';
-import { login, registration } from '../http/userApi';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from '../utils/consts';
+import { login, registration } from '../http/userAPI';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../index';
 
 const Auth = observer(() => {
     const {user} = useContext(Context);
     const location = useLocation();
+    const navigator = useNavigate(); 
     const isLogin = location.pathname === LOGIN_ROUTE;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
     const click = async () => {
-        let date;
-        if (isLogin) {
-            date = await login(email, password);
-        } else {
-            date = await registration(email, password);
+        try {
+            let date;
+            if (isLogin) {
+                date = await login(email, password);
+            } else {
+                date = await registration(email, password);
+            }
+            user.setUser(user);
+            user.setIsAuth(true);
+            navigator(SHOP_ROUTE);
+        } catch (e) {
+            alert(e.response.data.message);
         }
-        user.setUser(user);
-        user.setIsAuth(true);
     }   
 
     return (
